@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="project2.css" />
+    <script src="Project2.js"></script>
+    <title>TO-DO List</title>
+</head>
+<body>
+    <h1>Welcome to To-do list page!</h1>
+    <hr>
+
+    <img src="https://cdn2.iconfinder.com/data/icons/objects-23/50/1F9F8-teddy-bear-512.png" 
+         alt="Image" width="200" height="200"
+         style="float: right; margin-left: 15px; margin-bottom: 15px;">
+
+    <label for="datemin">Date: </label>
+    <input type="date" id="datemin" name="datemin" min="2000-01-02"><br><br>
+    
+    <div class="row">
+        <button id="btnRed" type="button">high priority</button>
+        <button id="btnBlue" type="button">medium priority</button>
+        <button id="btnGreen" type="button">low priority</button>
+        <br><br>
+
+        <ol id="tasks_list"></ol>
+        
+        <form id="new-task">
+            <input id="task" autocomplete="off" autofocus placeholder="New task" type="text">
+            <select id="status">
+                <option value="processing"> Processing</option>
+                <option value="completed"> Completed</option>   
+            </select>
+            <input id="submit" type="submit" value="Add">
+        </form>
+
+        <p style="font-family:Century;font-size: smaller;">
+            Red - high priority | Blue - medium priority | Green - low priority
+          </p>
+    </div>
+</body>
+</html>
