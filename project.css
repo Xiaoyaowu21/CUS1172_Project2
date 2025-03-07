@@ -1,0 +1,7 @@
+*{
+    text-align: center;
+    background-color:rgb(223, 109, 128);
+}
+ol,ul{
+    display:inline-block;
+}
