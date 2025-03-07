@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="project2.css" />
+    <style>
+      *{
+    text-align: center;
+    background-color:rgb(223, 109, 128);
+}
+ol,ul{
+    display:inline-block;
+}
+p{
+    font-family:Century;
+    font-size: smaller;
+}
+
+    </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        
+    let selectedColor = '';
+
+    document.querySelector('#btnRed').onclick = function() {
+        selectedColor = 'red';
+    };
+
+    document.querySelector('#btnBlue').onclick = function() {
+        selectedColor = 'blue';
+    };
+
+    document.querySelector('#btnGreen').onclick = function() {
+        selectedColor = 'green';
+    };
+
+    document.querySelector("#new-task").onsubmit = function(){
+        const task_text = document.querySelector('#task').value;
+        const status_value = document.querySelector('#status').value;
+        const li = document.createElement('li');
+
+        let new_task_html = `
+            <span style="color: ${selectedColor};">
+                ${task_text} [${status_value}]
+            </span>
+            <button class="markComplete">Completed</button>
+            <button class="remove">Remove</button>
+        `;
+      
+        li.innerHTML = new_task_html;
+        document.querySelector("#tasks_list").append(li);
+        document.querySelector("#task").value = '';
+        return false;
+    };
+
+    document.addEventListener('click', function(event){
+        const element = event.target;
+        if(element.className === 'remove'){
+            element.parentElement.remove();
+        }
+        else if (element.className === 'markComplete') {
+            const taskSpan = element.parentElement.querySelector('span');
+            taskSpan.style.textDecoration = 'line-through';
+
+            const originalText = taskSpan.textContent; 
+            const bracketIndex = originalText.lastIndexOf('[');
+            if (bracketIndex !== -1) {
+                const newText = originalText.slice(0, bracketIndex) + '[completed]';
+                taskSpan.textContent = newText;
+            }
+        }
+    });
+});
+  </script>
+    <title>TO-DO List</title>
+</head>
+<body>
+    <h1>Welcome to To-do list page!</h1>
+    <hr>
+
+    <img src="https://cdn2.iconfinder.com/data/icons/objects-23/50/1F9F8-teddy-bear-512.png" 
+         alt="Image" width="200" height="200"
+         style="float: right; margin-left: 15px; margin-bottom: 15px;">
+
+    <label for="datemin">Date: </label>
+    <input type="date" id="datemin" name="datemin" min="2000-01-02"><br><br>
+    
+    <div class="row">
+        <button id="btnRed" type="button">high priority</button>
+        <button id="btnBlue" type="button">medium priority</button>
+        <button id="btnGreen" type="button">low priority</button>
+        <br><br>
+
+        <ol id="tasks_list"></ol>
+        
+        <form id="new-task">
+            <input id="task" autocomplete="off" autofocus placeholder="New task" type="text">
+            <select id="status">
+                <option value="processing"> Processing</option>
+                <option value="completed"> Completed</option>   
+            </select>
+            <input id="submit" type="submit" value="Add">
+        </form>
+
+        <p>
+            Red - high priority | Blue - medium priority | Green - low priority
+          </p>
+    </div>
+</body>
+</html>
