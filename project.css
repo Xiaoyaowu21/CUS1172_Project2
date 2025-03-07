@@ -5,3 +5,8 @@
 ol,ul{
     display:inline-block;
 }
+p{
+    font-family:Century;
+    font-size: smaller;
+}
+
